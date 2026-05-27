@@ -22,7 +22,8 @@ OBJ_DIR = obj
 
 SRCS = main.cpp \
 		parser/parser.cpp \
-		Error/Error.cpp
+		Error/Error.cpp \
+		Printer/Printer.cpp
 
 OBJS = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 

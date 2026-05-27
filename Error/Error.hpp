@@ -15,21 +15,6 @@
 
 #include <stdexcept>
 #include <string>
-#include <iostream>
-
-/*
-ANSI Color
-*/
-
-#define RESET          "\x1B[0m"
-#define RED            "\x1B[31m"
-#define LIGHT_RED      "\x1B[91m"
-#define GREEN          "\x1B[32m"
-#define YELLOW         "\x1B[33m"
-#define BLUE           "\x1B[34m"
-#define CYAN           "\x1B[36m"
-#define MAGENTA        "\x1B[35m"
-#define LIGHTMAGENTA   "\x1B[95m"
 
 /*
 Computor Error
@@ -65,8 +50,8 @@ public:
 
 	virtual ~ComputorError() throw();
 
-	// custom methods
-	void print() const;
+	// getter
+	ErrorType getType() const;
 };
 
 #endif
