@@ -25,6 +25,7 @@ a.out
 
 # vscode
 .vscode/
+*.json
 
 # idea
 .idea/

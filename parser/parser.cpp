@@ -6,7 +6,7 @@
 /*   By: daeunki2 <daeunki2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 18:56:24 by daeunki2          #+#    #+#             */
-/*   Updated: 2026/05/27 21:04:25 by daeunki2         ###   ########.fr       */
+/*   Updated: 2026/05/28 00:09:17 by daeunki2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,14 @@ void	Parser::clear()
 // 최소 전처리:
 // 1) 허용되지 않은 문자 검사
 // 2) '=' 개수 검사 (정확히 1개)
-void	Parser::preprocessInput( )
+// 3) 빈 문장인지 검사. 
+void	Parser::preprocess_Input( )
 {
 	int equalCount = 0;
+	if (_line.find_first_not_of(" \t\n\r\v\f") == std::string::npos)
+	{
+		throw ComputorError("Nothing to solve", ComputorError::EMPTY_INPUT);
+	}
 
 	for (std::string::const_iterator it = _line.begin(); it != _line.end(); ++it)
 	{
@@ -89,52 +94,15 @@ void	Parser::parse(const std::string& equation)
 	// 여기까지는 초기화 + 아주 간단한 검사
 	clear();
 	_line = equation;
-	preprocessInput();
-	// 문자열에서 =의 위치를 찾아서 일단 2개로 나누기
+	preprocess_Input();
+	// 문자열에서 =의 위치를 찾아서 일단 2개로 나누고 각 변에 값이 있는지 확인. 
 	size_t pos = equation.find('=');
 	std::string left = equation.substr(0, pos);
 	std::string right = equation.substr(pos + 1);
-	// 오른쪽 먼저 처리하고, 왼쪽은 부호를 바꿔서 맵에 담기. + 담는 과정에서는 유효성 검사하기
-	
+	// 하나씩 처리하면서 값을담는다. 단 pos을 이용하여 저장할때 좌변인지 우변인지 저장
 }
 
-std::map<int, double> Parser::getPolynomial() const
+std::vector<Term> Parser::get_terms() const
 {
 	return (_polynomial);
-}
-
-void	Parser::printPolynomial() const
-{
-	bool first = true;
-	bool hasTerm = false;
-
-	std::cout << "Reduced form: ";
-	for (std::map<int, double>::const_iterator it = _polynomial.begin(); it != _polynomial.end(); ++it)
-	{
-		double coef = it->second;
-		int exp = it->first;
-
-		if (std::fabs(coef) < 1e-12)
-			continue;
-		hasTerm = true;
-		if (first)
-		{
-			if (coef < 0)
-				std::cout << "-";
-		}
-		else
-		{
-			if (coef < 0)
-				std::cout << " - ";
-			else
-				std::cout << " + ";
-		}
-		if (coef < 0)
-			coef = -coef;
-		std::cout << coef << " * X^" << exp;
-		first = false;
-	}
-	if (!hasTerm)
-		std::cout << "0 * X^0";
-	std::cout << " = 0" << std::endl;
 }
