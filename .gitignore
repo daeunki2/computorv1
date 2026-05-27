@@ -1,0 +1,42 @@
+# executable
+computor
+a.out
+
+# object files
+*.o
+*.obj
+
+# dependency files
+*.d
+
+# archives
+*.a
+
+# shared libraries
+*.so
+*.dylib
+
+# debug
+*.out
+*.gch
+
+# macOS
+.DS_Store
+
+# vscode
+.vscode/
+
+# idea
+.idea/
+
+# logs
+*.log
+
+# temp
+tmp/
+temp/
+
+# coverage
+*.gcda
+*.gcno
+*.gcov
