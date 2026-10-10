@@ -1,51 +1,20 @@
-# executable
-computor
-a.out
+# Python cache
+__pycache__/
+*.pyc
 
-# object files
-*.o
-*.obj
-
-# dependency files
-*.d
-
-# archives
-*.a
-
-# shared libraries
-*.so
-*.dylib
-
-# debug
-*.out
-*.gch
+# Python virtual environment
+.venv/
+venv/
 
 # macOS
 .DS_Store
 
-# vscode
+# IDE
 .vscode/
-*.json
-
-# Puthon
-__pycache__/
-*.pyc
-
-# idea
 .idea/
 
-# logs
+# Temporary files
 *.log
 
-# temp
-tmp/
-temp/
-
-# subject files
+# Subject file
 *.pdf
-memo.md
-
-# coverage
-*.gcda
-*.gcno
-*.gcov
